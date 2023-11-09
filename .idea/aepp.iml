@@ -30,6 +30,7 @@
       <list>
         <option value="$MODULE_DIR$/backend/speed/templates" />
         <option value="$MODULE_DIR$/backend/templates" />
+        <option value="$MODULE_DIR$/backend/main/templates" />
       </list>
     </option>
   </component>

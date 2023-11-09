@@ -7,10 +7,12 @@ def index(request):
 		form = calcSpeedForm(request.POST)
 		if form.is_valid():
 			print(form.changed_data)
+			result = get_memf(request.POST)
 	else:
 		form = calcSpeedForm(auto_id=True)
+		result = ''
 
-	result = get_memf(request.POST)
+
 
 	data = {
 		'title': 'Настройка скоростей',
