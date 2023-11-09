@@ -1,0 +1,16 @@
+.nav {
+	height: 100%;
+}
+.nav__items {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	list-style: none;
+	
+}
+
+.nav__item {
+	color: #000;
+	text-transform: uppercase;
+}

@@ -1,0 +1,26 @@
+/* Стили для смартфона */
+@media (max-width: 767px) {
+
+	.speed-form p {
+		flex-direction: column;
+	}
+
+	input {
+		margin: auto;
+		width: 140px;
+	}
+
+	input[type="button"] {
+		width: 100%;
+	}
+}
+
+/* Стили для планшета */
+ @media (min-width: 768px) and (max-width: 1023px) {
+
+}
+
+/* Стили для компьютера */
+@media (min-width: 1024px) {
+
+}
