@@ -1,16 +1,25 @@
 .nav {
-	height: 100%;
+	display: flex;
+	align-items: center;
 }
+
 .nav__items {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 12px;
 
 	list-style: none;
-	
 }
 
 .nav__item {
 	color: #000;
 	text-transform: uppercase;
+	font-weight: bold;
 }
+.active {
+	color: #0036ab !important;
+}
+
+
+
+

@@ -1,0 +1,20 @@
+.speed-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.speed-form p {
+	display: flex;
+	justify-content: space-between;
+}
+
+input {
+	margin-top: 4px;
+	width: 200px;
+	height: 30px;
+}
+
+input[type="submit"] {
+	margin: auto;
+}
