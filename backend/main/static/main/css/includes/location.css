@@ -1,0 +1,11 @@
+.ccsp-area {
+  width: 100%;
+  height: 45%;
+  border: 1px solid #000;
+  overflow: auto;
+}
+
+.canvas {
+  width: auto;
+  height: 50%;
+}

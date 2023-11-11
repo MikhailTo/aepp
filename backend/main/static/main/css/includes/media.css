@@ -19,8 +19,9 @@
 		display: flex !important;
 	}
 	.container {
-		margin-left: 200px;
+		margin-left: 0px;
 	}
+
 	.logo {
 		margin: 0 auto;
 	}

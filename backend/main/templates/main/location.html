@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	{{ title }}
+	<div class="ccsp-area">
+      <canvas ref="canvas" class="canvas" @click="handleClick" id="mainCanvas" width="2900" height="500"></canvas>
+    </div>
 {% endblock %}
