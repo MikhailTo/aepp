@@ -1,17 +1,35 @@
 /* Стили для смартфона */
 @media (max-width: 767px) {
 
-	.speed-form p {
+	.form-speed p {
 		flex-direction: column;
+		margin: 0;
 	}
 
 	input {
-		margin: auto;
+		margin: 8px auto;
 		width: 140px;
 	}
 
 	input[type="submit"] {
 		width: 100%;
+	}
+
+	.nav-burger {
+		display: flex !important;
+	}
+	.container {
+		margin-left: 200px;
+	}
+	.logo {
+		margin: 0 auto;
+	}
+	.nav-main {
+		display: none;
+	}
+	.nav-burger {
+		display: block !important;
+		margin: 0;
 	}
 }
 

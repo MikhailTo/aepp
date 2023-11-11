@@ -1,8 +1,11 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
 
-<title>{{ title }}</title>
-
-{% load static %}
-<link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    {% load static %}
+    <link href="{% static 'main/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'main/vendor/fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'main/vendor/fontawesomefree/js/all.min.js' %}"></script>
+</head>

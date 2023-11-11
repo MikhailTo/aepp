@@ -1,0 +1,11 @@
+<aside id="sidebar" class="sidebar">
+    <nav class="nav-sidebar">
+	    <ul class="nav-sidebar__items">
+            {% for nav_item in nav %}
+		    <li class="nav-sidebar__item">
+                <a class="nav-sidebar__link {% if name == nav_item.url  %}active{% endif %}" href="{% url nav_item.url %}">{{ nav_item.name }}</a>
+            </li>
+            {% endfor %}
+	    </ul>
+    </nav>
+</aside>

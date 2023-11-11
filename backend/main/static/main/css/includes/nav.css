@@ -1,9 +1,13 @@
-.nav {
+.nav-main, .nav-sidebar {
 	display: flex;
 	align-items: center;
 }
 
-.nav__items {
+.nav-burger {
+	display: none;
+}
+
+.nav-main__items, .nav-sidebar__items  {
 	display: flex;
 	align-items: center;
 	gap: 12px;
@@ -11,11 +15,17 @@
 	list-style: none;
 }
 
-.nav__item {
+.nav-sidebar__items {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.nav-main__item, .nav-sidebar__item{
 	color: #000;
 	text-transform: uppercase;
 	font-weight: bold;
 }
+
 .active {
 	color: #0036ab !important;
 }
