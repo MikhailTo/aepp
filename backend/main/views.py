@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from main.forms import calcSpeedForm
 
@@ -11,7 +12,6 @@ nav = [
 ]
 
 
-
 def index(request):
 
     data = {
@@ -21,6 +21,7 @@ def index(request):
     }
 
     return render(request, 'main/index.html', context=data)
+
 
 def speed(request):
     if request.method == 'POST':
@@ -59,6 +60,7 @@ def get_memf(data):
     result = round(result, 2) if result % 1 != 0 else result
     return result
 
+
 def order(request):
     data = {
         'name': 'order',
@@ -67,26 +69,15 @@ def order(request):
     }
     return render(request, 'main/order.html', context=data)
 
+
 def location(request):
-    squares = [
-        {'x': 40, 'y': 350, 'w': 150, 'h': 30, 'name': 'ПСУ-1Г', 'color': 'orange', 'info': 'КТЭ'},
-        {'x': 190, 'y': 350, 'w': 50, 'h': 30, 'name': 'ТП-11', 'color': 'grey', 'info': ''},
-        {'x': 290, 'y': 350, 'w': 50, 'h': 30, 'name': 'ПСУ-1А', 'color': 'orange', 'info': 'КТЭ'},
-        {'x': 390, 'y': 350, 'w': 100, 'h': 30, 'name': '1ПСУ', 'color': 'orange', 'info': ''},
-        {'x': 750, 'y': 200, 'w': 50, 'h': 30, 'name': 'ПСУ-1Б', 'color': 'green', 'info': ''},
-        {'x': 815, 'y': 200, 'w': 30, 'h': 30, 'name': '8ER', 'color': 'green', 'info': ''},
-        {'x': 900, 'y': 200, 'w': 100, 'h': 30, 'name': '3EP', 'color': 'green', 'info': ''},
-        {'x': 900, 'y': 230, 'w': 80, 'h': 30, 'name': 'ПТП 2800', 'color': 'green', 'info': ''},
-        {'x': 900, 'y': 260, 'w': 100, 'h': 30, 'name': 'ЭТП-1', 'color': 'green', 'info': ''},
-        {'x': 1050, 'y': 200, 'w': 150, 'h': 30, 'name': '5EP', 'color': 'green', 'info': ''},
-        {'x': 1350, 'y': 200, 'w': 250, 'h': 50, 'name': 'ПТП 1700', 'color': 'green', 'info': ''},
-    ],
     data = {
         'name': 'location',
         'title': 'Расположение',
         'nav': nav,
     }
     return render(request, 'main/location.html', context=data)
+
 
 def storage(request):
     data = {
@@ -95,6 +86,7 @@ def storage(request):
         'nav': nav,
     }
     return render(request, 'main/storage.html', context=data)
+
 
 def manuals(request):
     data = {
