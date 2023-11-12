@@ -46,6 +46,7 @@ class Group(models.Model):
     def __str__(self):
         return self.group_name
 
+
 class Order(models.Model):
     order_number = models.IntegerField(default="")
     company_id = models.ForeignKey('Company', on_delete=models.PROTECT, null=False, default=0) # "ПАО Северсталь"
