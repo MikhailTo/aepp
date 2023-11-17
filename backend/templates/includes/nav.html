@@ -3,7 +3,10 @@
 	<ul class="nav-main__items">
         {% for nav_item in nav %}
 		<li class="nav-main__item">
-            <a class="nav-main__link {% if name == nav_item.url  %}active{% endif %}" href="{% url nav_item.url %}">{{ nav_item.name }}</a>
+            <a class="nav-main__link
+                {% if name == nav_item.url  %}active{% endif %}" href="{% url nav_item.url %}">
+                {{ nav_item.name }}
+            </a>
         </li>
         {% endfor %}
 	</ul>

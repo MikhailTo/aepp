@@ -3,13 +3,14 @@ from django.shortcuts import render
 from main.forms import calcSpeedForm
 
 nav = [
-    {'name': 'Главная', 'url': 'index'},
-    {'name': 'Скорости', 'url': 'speed'},
-    {'name': 'Наряды', 'url': 'order'},
-    {'name': 'Расположение', 'url': 'location'},
-    {'name': 'Склад', 'url': 'storage'},
-    {'name': 'Инструкции', 'url': 'manuals'},
+    {'name': 'Главная',         'url': 'index'},
+    {'name': 'Скорости',        'url': 'speed'},
+    {'name': 'Наряды',          'url': 'order'},
+    {'name': 'Расположение',    'url': 'location'},
+    {'name': 'Склад',           'url': 'storage'},
+    {'name': 'Инструкции',      'url': 'manuals'},
 ]
+
 
 
 def index(request):
