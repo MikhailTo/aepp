@@ -14,8 +14,8 @@ class Equipment(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=255)
-    group_id = models.ForeignKey('Group', on_delete=models.PROTECT, null=False)
-    division_id = models.ForeignKey('Division', on_delete=models.PROTECT, null=False)
+    group = models.ForeignKey('Group', on_delete=models.PROTECT, null=False)
+    division = models.ForeignKey('Division', on_delete=models.PROTECT, null=False)
     color = models.CharField(max_length=255, default='grey')
     x = models.IntegerField()
     y = models.IntegerField()
@@ -49,14 +49,14 @@ class Group(models.Model):
 
 class Order(models.Model):
     order_number = models.IntegerField(default="")
-    company_id = models.ForeignKey('Company', on_delete=models.PROTECT, null=False, default=0) # "ПАО Северсталь"
-    division_id = models.ForeignKey('Division', on_delete=models.PROTECT, null=False, default=0) #"ППП ЛПЦ-1"
-    issuer_id = models.ForeignKey('Issuer', on_delete=models.PROTECT, null=False)
+    company = models.ForeignKey('Company', on_delete=models.PROTECT, null=False, default=0) # "ПАО Северсталь"
+    division = models.ForeignKey('Division', on_delete=models.PROTECT, null=False, default=0) #"ППП ЛПЦ-1"
+    issuer = models.ForeignKey('Issuer', on_delete=models.PROTECT, null=False)
     accountable_name = models.CharField(max_length=128, default="Не назначается")
     allower_name = models.CharField(max_length=128, default="оперативному персоналу")
-    producer_id = models.ForeignKey('Member', on_delete=models.PROTECT, null=False)
-    watching_id = models.ForeignKey('Watching', on_delete=models.PROTECT, null=False, default=0) # ""
-    brigade_id = models.ForeignKey('Brigade', on_delete=models.PROTECT, null=False)
+    producer = models.ForeignKey('Member', on_delete=models.PROTECT, null=False)
+    watching = models.ForeignKey('Watching', on_delete=models.PROTECT, null=False, default=0) # ""
+    brigade = models.ForeignKey('Brigade', on_delete=models.PROTECT, null=False)
     errand = models.CharField(max_length=512)
     add_instrs = models.CharField(max_length=512)
     extrad_time = models.TimeField()
