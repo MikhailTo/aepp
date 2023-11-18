@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	{{ title }}
+    {{ mans }}
+    <ul style="list-style: none">
+    {% for manual in manuals %}
+        <li><a href="{{ manual.url }}">{{ manual.name }}</a></li>
+    {% endfor %}
+    </ul>
 {% endblock %}
