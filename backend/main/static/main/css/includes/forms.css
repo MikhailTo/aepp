@@ -9,7 +9,7 @@
 	justify-content: space-between;
 }
 
-input {
+input, select {
 	margin-top: 4px;
 	width: 200px;
 	height: 30px;
@@ -17,4 +17,15 @@ input {
 
 input[type="submit"] {
 	margin: auto;
+}
+
+.form-order {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+
+.form-order p {
+	display: flex;
+	justify-content: space-between;
 }

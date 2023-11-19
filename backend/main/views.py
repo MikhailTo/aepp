@@ -1,7 +1,7 @@
 import boto3
 from decouple import config
 from django.shortcuts import render
-from main.forms import calcSpeedForm
+from .forms import calcSpeedForm, createOrder
 
 
 nav = [
@@ -65,10 +65,12 @@ def get_memf(data):
 
 
 def order(request):
+    form = createOrder(auto_id=True)
     data = {
         'name': 'order',
         'title': 'Наряды',
         'nav': nav,
+        'form': form,
     }
     return render(request, 'main/order.html', context=data)
 
