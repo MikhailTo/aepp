@@ -1,0 +1,87 @@
+.page--order {
+    display: block;
+        width: 210mm;
+        min-height: 297mm;
+        padding: 20mm;
+        margin: 10mm auto;
+        border: 1px #D3D3D3 solid;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0 1px 8px rgba(0,0,0,.2);
+    }
+.subpage {
+    padding: 1cm;
+    border: 1px #adadad solid;
+    height: 257mm;
+    outline: 2cm #eeeded solid;
+}
+
+.container--for-A4 {
+	max-width: 100%;
+	margin: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    @page :right {
+        size: A4;
+        margin: 0;
+    }
+    @media print {
+        *,
+        *:before,
+        *:after,
+        *:first-letter,
+        p:first-line,
+        div:first-line,
+        blockquote:first-line,
+        li:first-line {
+            background: transparent !important;
+            color: #000 !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+        html, body {
+            width: 210mm;
+            height: 297mm;
+            height: initial !important;
+            overflow: initial !important;
+            -webkit-print-color-adjust: exact;
+        }
+        .header { display: none; }
+        .main {
+	        padding-top: 0;
+        }
+        .container {
+	        max-width: 100%;
+	        margin: 0;
+	        padding-left: 0;
+	        padding-right: 0;
+        }
+        .page {
+	        overflow-y: hidden;
+        }
+        .page--order {
+            display: block;
+            margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+        }
+        .subpage {
+
+            page-break-before: auto;
+            page-break-inside: auto;
+            page-break-after: auto;
+            /*border: 0;*/
+            /*outline: 0;*/
+        }
+    }

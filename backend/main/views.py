@@ -1,8 +1,8 @@
-
-from django.shortcuts import render
-from main.forms import calcSpeedForm
 import boto3
 from decouple import config
+from django.shortcuts import render
+from main.forms import calcSpeedForm
+
 
 nav = [
     {'name': 'Главная',         'url': 'index'},

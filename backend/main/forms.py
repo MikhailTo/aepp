@@ -1,5 +1,6 @@
 from django import forms
 
+
 class calcSpeedForm(forms.Form):
 	labels = {
 		"task":		"Задание с клином в привод, %",
@@ -17,3 +18,15 @@ class calcSpeedForm(forms.Form):
 	bemf = forms.FloatField(label=labels["bemf"], min_value=0)
 	bmav = forms.FloatField(label=labels["bmav"], min_value=0)
 
+class createOrder(forms.Form):
+	labels = {
+		"company": "Организация",
+		"division": "Подразделение",
+		"order_number": "Наряд-допуск №",
+		"accountable_name": "Ответственному руководителю работ",
+		"allower_name": "допускающему",
+		"producer": "Производителю работ",
+		"watching": "наблюдающему",
+		"brigade": "с членами бригады",
+		"errand": "поручается"
+	}
