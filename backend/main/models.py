@@ -34,6 +34,7 @@ class Company(models.Model):
 
 
 class Division(models.Model):
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, null=False, default=0)
     division_name = models.CharField(max_length=128)
 
     def __str__(self):
@@ -41,6 +42,7 @@ class Division(models.Model):
 
 
 class Group(models.Model):
+    division = models.ForeignKey('Division', on_delete=models.CASCADE, null=False, default=0)
     group_name = models.CharField(max_length=255)
 
     def __str__(self):
