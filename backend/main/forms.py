@@ -1,5 +1,5 @@
 from django import forms
-from .models import Company, Division, Watching, Issuer, Member
+from .models import Company, Division, Issuer, Member, Watching
 
 class calcSpeedForm(forms.Form):
 	labels = {
@@ -18,7 +18,16 @@ class calcSpeedForm(forms.Form):
 	bemf = forms.FloatField(label=labels["bemf"], min_value=0)
 	bmav = forms.FloatField(label=labels["bmav"], min_value=0)
 
-class createOrder(forms.Form):
+# class OrderForm(forms.ModelForm):
+# 	class Meta:
+# 		model = Order
+# 		fields = "__all__"
+#
+# 		def __init__(self, *args, **kwargs):
+# 			super().__init__(*args, **kwargs)
+# 			self.fields['division'].queryset = Division.objects.none()
+#
+class OrderForm(forms.Form):
 	labels = {
 		"company": "Организация",
 		"division": "Подразделение",
@@ -43,11 +52,11 @@ class createOrder(forms.Form):
 
 	company = forms.ModelChoiceField(label=labels["company"],
 										queryset=Company.objects.all(),
-									 	initial=Company.objects.get(pk=1),
-										widget=forms.Select(attrs={'class': 'company'}))
+									 	# initial=Company.objects.get(pk=1),
+										widget=forms.Select(attrs={'id': 'company', 'class': 'company'}))
 	division = forms.ModelChoiceField(label=labels["division"],
-									  queryset=Division.objects.all(),
-									  widget=forms.Select(attrs={'class': 'division'}))
+										queryset=Division.objects.all(),
+									  widget=forms.Select(attrs={'id': 'division', 'class': 'division'}))
 	order_number = forms.IntegerField(label=labels["order_number"],
 									  widget=forms.NumberInput(attrs={'class': 'order-number'}))
 	accountable_name = forms.ModelChoiceField(label=labels["accountable_name"], queryset=Member.objects.all())

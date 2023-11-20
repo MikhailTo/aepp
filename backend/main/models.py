@@ -48,23 +48,22 @@ class Group(models.Model):
     def __str__(self):
         return self.group_name
 
-
 class Order(models.Model):
     order_number = models.IntegerField(default="")
-    company = models.ForeignKey('Company', on_delete=models.PROTECT, null=False, default=0) # "ПАО Северсталь"
-    division = models.ForeignKey('Division', on_delete=models.PROTECT, null=False, default=0) #"ППП ЛПЦ-1"
+    company = models.ForeignKey('Company', on_delete=models.PROTECT, null=False, default=0)
+    division = models.ForeignKey('Division', on_delete=models.PROTECT, null=False, default=0)
     issuer = models.ForeignKey('Issuer', on_delete=models.PROTECT, null=False)
     accountable_name = models.CharField(max_length=128, default="Не назначается")
     allower_name = models.CharField(max_length=128, default="оперативному персоналу")
     producer = models.ForeignKey('Member', on_delete=models.PROTECT, null=False)
-    watching = models.ForeignKey('Watching', on_delete=models.PROTECT, null=False, default=0) # ""
+    watching = models.ForeignKey('Watching', on_delete=models.PROTECT, null=False, default=0)
     brigade = models.ForeignKey('Brigade', on_delete=models.PROTECT, null=False)
     errand = models.CharField(max_length=512)
     add_instrs = models.CharField(max_length=512)
     extrad_time = models.TimeField()
     start_time = models.TimeField()
     end_time = models.TimeField()
-    interventions = models.ForeignKey('Equipment', on_delete=models.PROTECT, null=False)
+    interventions = models.ForeignKey('Interventions', on_delete=models.PROTECT, null=False)
 
     def __str__(self):
         return self.errand

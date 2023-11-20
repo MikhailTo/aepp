@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{#	<div class="order">#}
-{#        <div class="page--order page-break">#}
-{#            <div class="subpage">Страница 1/2</div>#}
-{#        </div>#}
-{#        <div class="page--order page-break">#}
-{#            <div class="subpage">Страница 2/2</div>#}
-{#        </div>#}
-{#    </div>#}
-    <form class="form-order" action="" method="post">
+    <form id="form-order" class="form-order" action="" method="post">
 		{% csrf_token %}
-		{{ form.as_p }}
+        {% for field in form %}
+            <p>
+                <label class="form-order__label">{{ field.label }}</label>
+                {{ field }}
+            </p>
+        {% endfor %}
 		<p><input type="submit" value="Печать"></p>
 	</form>
 {% endblock %}

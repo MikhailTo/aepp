@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "main.apps.MainConfig",
-    'fontawesomefree'
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [

@@ -1,7 +1,8 @@
 import boto3
 from decouple import config
 from django.shortcuts import render
-from .forms import calcSpeedForm, createOrder
+
+from .forms import calcSpeedForm, OrderForm
 
 
 nav = [
@@ -12,7 +13,6 @@ nav = [
     {'name': 'Склад',           'url': 'storage'},
     {'name': 'Инструкции',      'url': 'manuals'},
 ]
-
 
 
 def index(request):
@@ -65,7 +65,12 @@ def get_memf(data):
 
 
 def order(request):
-    form = createOrder(auto_id=True)
+    form = OrderForm()
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+
     data = {
         'name': 'order',
         'title': 'Наряды',
