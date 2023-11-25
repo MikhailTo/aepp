@@ -1,6 +1,43 @@
 from django.db import models
 
+labels = {
+        "date":   "Дата настройки",
+        "winder":   "Моталка №",
+        "roll":     "Формирующий ролик",
+		"task":		"Задание с клином в привод, %",
+		"cspd": 	"Корректировка фактической скорости",
+		"tspd":		"Выставленная скорость по заданию, м/с",
+		"fspd":		"Фактическая скорость на терминале, м/с",
+		"bmav":		"Изм. угл. факт. скорость до корр., об/мин",
+		"bemf":		"Значение параметра P115.2 до изменения",
+		"amav":		"Изм. угл. факт. скорость после корр., об/мин",
+		"aemf":		"Значение параметра P115.2 после изменения",
+		"dtmav":	"Разница скоростей заданной от фактической, %",
+		"corr": 	"Корректировка скоростей",
+	}
 
+class Post(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField(blank=True)
+    time_create = models.DateTimeField(auto_now_add=True)
+    time_update = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=True)
+
+class Speed(models.Model):
+    date = models.DateField(verbose_name=labels['date'])
+    winder = models.IntegerField(blank=False, verbose_name=labels['winder'])
+    roll = models.IntegerField(blank=False, verbose_name=labels['roll'])
+    task = models.FloatField(blank=False, verbose_name=labels['task'])
+    cspd = models.BooleanField(default=False, verbose_name=labels['cspd'])
+    tspd = models.FloatField(default=10.0, verbose_name=labels['tspd'])
+    bmav = models.IntegerField(blank=False, verbose_name=labels['bmav'])
+    bemf = models.FloatField(blank=False, verbose_name=labels['bemf'])
+    amav = models.IntegerField(blank=False, verbose_name=labels['amav'])
+    aemf = models.FloatField(blank=False, verbose_name=labels['aemf'])
+    corr = models.BooleanField(default=True, verbose_name=labels['corr'])
+
+    def __str__(self):
+        return 'Моталка №' + self.winder + ' (' + self.date + ')'
 class Equipment(models.Model):
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=100)

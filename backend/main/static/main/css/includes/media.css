@@ -6,9 +6,9 @@
 		margin: 0;
 	}
 
-	input {
-		margin: 8px auto;
-		width: 140px;
+	input, select {
+		margin: 4px auto 2px auto;
+		width: 160px;
 	}
 
 	input[type="submit"] {
@@ -31,6 +31,13 @@
 	.nav-burger {
 		display: block !important;
 		margin: 0;
+	}
+	.table-container {
+		overflow-x: scroll;
+	}
+	.container {
+		padding-right: 1rem;
+		padding-left: 1rem;
 	}
 }
 

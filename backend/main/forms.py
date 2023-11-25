@@ -1,22 +1,38 @@
 from django import forms
-from .models import Company, Division, Issuer, Member, Watching
+from .models import Speed, Company, Division, Issuer, Member, Watching
 
-class calcSpeedForm(forms.Form):
-	labels = {
-		"task":		"Задание с клином в привод, %",
-		"tspd":		"Выставленная скорость по заданию, м/с",
-		"fspd":		"Фактическая скорость на терминале, м/с",
-		"bmav":		"Изм. угл. факт. скорость до корр., об/мин",
-		"bemf":		"Значение параметра P115.2 до изменения",
-		"amav":		"Изм. угл. факт. скорость после корр., об/мин",
-		"aemf":		"Значение параметра P115.2 после изменения",
-		"dtmav":	"Разница скоростей заданной от фактической, %",
-	}
 
-	task = forms.FloatField(label=labels["task"], min_value=0)
-	tspd = forms.FloatField(label=labels["tspd"], min_value=0)
-	bemf = forms.FloatField(label=labels["bemf"], min_value=0)
-	bmav = forms.FloatField(label=labels["bmav"], min_value=0)
+class SpeedForm(forms.ModelForm):
+	class Meta:
+		model = Speed
+		fields = ['date', 'winder', ]
+
+# class SpeedForm(forms.Form):
+# 	labels = {
+# 		"task":		"Задание с клином в привод, %",
+# 		"cspd": 	"Корректировка фактической скорости",
+# 		"tspd":		"Выставленная скорость по заданию, м/с",
+# 		"fspd":		"Фактическая скорость на терминале, м/с",
+# 		"bmav":		"Изм. угл. факт. скорость до корр., об/мин",
+# 		"bemf":		"Значение параметра P115.2 до изменения",
+# 		"amav":		"Изм. угл. факт. скорость после корр., об/мин",
+# 		"aemf":		"Значение параметра P115.2 после изменения",
+# 		"dtmav":	"Разница скоростей заданной от фактической, %",
+# 		"corr": 	"Корректировка скоростей",
+# 	}
+# 	choises = (
+# 		(True, 'Корректировалось'),
+# 		(False, 'Не корректировалось')
+# 	)
+# 	task = forms.FloatField(label=labels["task"], min_value=0)
+# 	cspd = forms.ChoiceField(label=labels["cspd"], choices=choises, initial=False)
+# 	tspd = forms.FloatField(label=labels["tspd"], min_value=0)
+# 	fspd = forms.FloatField(label=labels["fspd"], min_value=0)
+# 	bmav = forms.FloatField(label=labels["bmav"], min_value=0)
+# 	bemf = forms.FloatField(label=labels["bemf"], min_value=0)
+# 	amav = forms.FloatField(label=labels["amav"], min_value=0)
+# 	aemf = forms.FloatField(label=labels["aemf"], min_value=0)
+# 	corr = forms.ChoiceField(label=labels["corr"], choices=choises, initial=False)
 
 # class OrderForm(forms.ModelForm):
 # 	class Meta:

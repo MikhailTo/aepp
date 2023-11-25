@@ -1,9 +1,11 @@
 import boto3
 from decouple import config
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from .forms import calcSpeedForm, OrderForm
+from .forms import SpeedForm, OrderForm
 
+from .models import Post, Speed
+from .tables import SpeedTable
 
 nav = [
     {'name': 'Главная',         'url': 'index'},
@@ -14,34 +16,49 @@ nav = [
     {'name': 'Инструкции',      'url': 'manuals'},
 ]
 
+def show_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    data = {
+        'name': 'post.title',
+        'title': 'Главная страница',
+        'nav': nav,
+        'post': post,
+    }
 
 def index(request):
+
+    posts = Post.objects.filter(is_published=1)
 
     data = {
         'name': 'index',
         'title': 'Главная страница',
         'nav': nav,
+        'posts': posts,
     }
 
     return render(request, 'main/index.html', context=data)
 
 
 def speed(request):
-    if request.method == 'POST':
-        form = calcSpeedForm(request.POST)
-        if form.is_valid():
-            print(form.changed_data)
-            result = get_memf(request.POST)
-    else:
-        form = calcSpeedForm(auto_id=True)
-        result = ''
+    table = SpeedTable(Speed.objects.all())
+    form = SpeedForm()
+    # if request.method == 'POST':
+    #     form = SpeedForm(request.POST)
+    #     if form.is_valid():
+    #         print(form.changed_data)
+    #         result = get_memf(request.POST)
+    # else:
+    #     form = SpeedForm(auto_id=True)
+    #     result = ''
 
     data = {
         'name': 'speed',
         'title': 'Настройка скоростей',
         'nav': nav,
+        'table': table,
         'form': form,
-        'result': result,
+        # 'result': result,
+        # 'winder': ['3', '4'],
     }
 
     return render(request, 'main/speed.html', context=data)
@@ -129,5 +146,13 @@ def manuals(request):
         'manuals': manuals,
     }
 
-
     return render(request, 'main/manuals.html', context=data)
+
+
+def page_not_found(request, exception):
+    data = {
+        'name': '404',
+        'title': 'Страница не найдена. Ошибка 404!',
+        'nav': nav,
+    }
+    return render(request, 'main/404.html', context=data)

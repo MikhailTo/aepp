@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "main.apps.MainConfig",
     'fontawesomefree',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [

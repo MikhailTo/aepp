@@ -1,12 +1,13 @@
 .form-speed {
 	display: flex;
-	flex-direction: column;
 	gap: 1rem;
 }
 
 .form-speed p {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
+	align-items: center;
+	gap: 2rem;
 }
 
 input, select {
@@ -23,6 +24,7 @@ input[type="submit"] {
 	display: flex;
 	flex-direction: column;
 	gap: 0.2rem;
+	width: 500px;
 }
 
 .form-order p {

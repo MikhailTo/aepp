@@ -1,10 +1,25 @@
-.speed-form {
+.form-speed {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 }
 
-.speed-form p {
+.form-speed__header {
+	display: flex;
+	flex-direction: row;
+	justify-items: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.form-speed__winder {
+	width: 40px;
+}
+.form-speed__date {
+	width: 140px;
+}
+
+.form-speed p {
 	display: flex;
 	justify-content: space-between;
 }
@@ -12,3 +27,4 @@
 input[type="button"] {
 	margin: auto;
 }
+
