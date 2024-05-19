@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:16.1-alpine3.19
+    container_name: database_aepp
+    restart: always
+    volumes:
+      - database_volume:/var/lib/postgresql/data/
+      - web_static_volume:/usr/src/aepp/static
+      - web_media_volume:/usr/src/aepp/media
+    env_file:
+      - ./config/.env.prod
+    # expose:
+    #   - "5432"
+    ports:
+      - "5432:5432"
+    networks:
+      - network
+
+  web:
+    build: 
+      context: .
+    ports:
+      - 8000:8000
+    container_name: web_aepp
+    restart: always
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/aepp/
+      - web_static_volume:/usr/src/aepp/static
+      - web_media_volume:/usr/src/aepp/media
+    depends_on:
+      - database
+    env_file:
+      - ./config/.env.prod
+    networks:
+      - network
+
+  nginx:
+    build: ./nginx
+    container_name: nginx_aepp
+    networks:
+      - network
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - web_static_volume:/usr/src/aepp/static
+      - web_media_volume:/usr/src/aepp/media 
+      
+volumes:
+  database_volume:
+  web_static_volume:
+  web_media_volume:
+
+networks:
+  network:
+    driver: bridge

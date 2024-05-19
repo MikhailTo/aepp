@@ -1,4 +1,8 @@
 from django.db import models
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+from django.template.defaultfilters import slugify
+from django.core.validators import FileExtensionValidator
 
 labels = {
         "date":   "Дата настройки",
@@ -150,3 +154,51 @@ class Brigade(models.Model):
 class Membership(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
     brigade = models.ForeignKey(Brigade, on_delete=models.CASCADE)
+
+class Categories(models.Model):
+    class Meta:
+        verbose_name = 'Категории инструкций'
+        verbose_name_plural = 'Категории инструкций'
+
+    name = models.CharField(max_length=128, verbose_name="Наименование категории", blank=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL", blank=True)
+    
+    def __str__(self):
+        return self.name + '(' + self.slug + ')'
+    
+class Groups(models.Model):
+    class Meta:
+        verbose_name = 'Группа инструкций'
+        verbose_name_plural = 'Группа инструкций'
+    
+    category = models.ForeignKey('Categories', on_delete=models.PROTECT, null=True, verbose_name="Категория", blank=True)
+    name = models.CharField(max_length=128, verbose_name="Группа инструкций", blank=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL", blank=True)
+    
+    def __str__(self):
+        return self.name + '(' + self.slug + ')'
+    
+
+class Manuals(models.Model):
+    class Meta:
+        verbose_name = 'Инструкции'
+        verbose_name_plural = 'Инструкции'
+    
+    category = models.ForeignKey('Categories', on_delete=models.PROTECT, null=True, verbose_name="Категория", blank=True)
+    group = models.ForeignKey('Groups', on_delete=models.PROTECT, null=True, verbose_name="Группа", blank=True)
+    name = models.CharField(max_length=128, verbose_name="Наименование инструкции", blank=True)
+    image = models.ImageField(verbose_name="Картинка инструкции",
+                                upload_to="manuals/",
+                                default='/static/images/default/no-image.svg',
+                                null=True,
+                                blank=True,
+                                storage=FileSystemStorage(location=str(settings.BASE_DIR), base_url='/'),
+                                validators=[FileExtensionValidator(['svg', 'png', 'jpg', 'webp'])])
+    # link = models.FileField(upload_to="manuals/",
+    #                           null=True,
+    #                           blank=False,
+    #                           validators=[FileExtensionValidator(['pdf'])])                            
+    # link = models.CharField(max_length=128, verbose_name="Ссылка каталога", blank=True)
+    
+    def __str__(self):
+        return self.name + ' (' + str(self.group) + ')'
