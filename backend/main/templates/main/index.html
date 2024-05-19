@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+	{% comment %} {% include 'includes/companies.html' %} {% endcomment %}
+	<section id="companies" class="companies">
+		<div class="companies__items">
+			{% for company in companies %}
+				<div class="companies__item">
+					<a class="companies__link" href="{{ company.link }}">
+						<img class="companies__image" src="{{ company.image.url }}">
+						<div class="companies__title">{{ company.title }}</div>
+						<div class="companies__subtitle">{{ company.subtitle }}</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
     <ul class="list-articles">
 	{% for post in posts %}
 	{% if post.is_published %}

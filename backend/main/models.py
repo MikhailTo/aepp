@@ -155,6 +155,30 @@ class Membership(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
     brigade = models.ForeignKey(Brigade, on_delete=models.CASCADE)
 
+class Companies(models.Model):
+
+    class Meta:
+        verbose_name = 'Продукция'
+        verbose_name_plural = 'Продукция'
+
+    def image_upload_to(self, instance=None):
+        if instance:
+            return os.path.join('images', slugify(self.series.slug), slugify(self.article_slug), instance)
+        return None
+
+    title = models.CharField(max_length=64)
+    subtitle = models.CharField(max_length=512, blank=True,)
+    image = models.FileField(upload_to="media/products/",
+                                default='/static/images/default/no-image.svg',
+                                null=True,
+                                blank=True,
+                                storage=FileSystemStorage(location=str(settings.BASE_DIR), base_url='/'),
+                              validators=[FileExtensionValidator(['svg', 'png', 'jpg', 'webp'])])
+    link = models.CharField(max_length=128, blank=True)
+
+    def __str__(self):
+        return self.title
+    
 class Categories(models.Model):
     class Meta:
         verbose_name = 'Категории инструкций'
